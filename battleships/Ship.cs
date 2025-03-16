@@ -1,5 +1,7 @@
 namespace battleships;
 
+//this could be an abstract class that defines the base behaviour of a ship
+//but right now, its a concrete class that is used by multiple ship types
 public class Ship
 {
     public ShipType ShipType { get; set; }
@@ -10,6 +12,7 @@ public class Ship
     
     private IDictionary<int, bool> hits = new Dictionary<int, bool>();
 
+    //a better implementation of this would be to track the position, so that additional UI could be added to show the hits
     public int AddHit(int hitPosition)
     {
         if (!hits.ContainsKey(hitPosition))

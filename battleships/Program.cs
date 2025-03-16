@@ -4,6 +4,9 @@ public static class Program
 {
     private static void Main(string[] args)
     {
+        //IF this was a full implementation, i would look to use DI and IoC to manage the game engine
+        //and all of its dependencies, but for now, we will just create a new instance
+        //this would also allow us to have different rendering engines which could be swapped between at the developers whim
         var game = new GameEngine();
         
         //define settings (get from cmd line or appsettings.json in future)
@@ -33,8 +36,12 @@ public static class Program
          * 9
          */
         
+        //if this was a full implementation, i would like to have a ShipFactory class to create ships
+        //and each ship type would be its own class, inheriting from a base Ship class
+        //this would allow for more control and enforcing the rules, while still allowing for customisation
+        
         //ideally, placement and orientation would be randomised but feels like overkill for now
-        //number of ships and locations could also come from a game settings file
+        //number of ships and locations could also come from a game settings file, which would be placed in the GameSettings class
         
         //battleships first
         game.AddShip(ShipType.Battleship, 1, 1, Orientation.Horizontal);
@@ -45,8 +52,11 @@ public static class Program
 
         var messageString = string.Empty;
         
+        //game loop
         while (game.IsGameInProgress())
         {
+            //rendering engine is console based and distinct from the game engine
+            
             //clear frame
             Console.Clear();
             Console.SetCursorPosition(0, 0);
